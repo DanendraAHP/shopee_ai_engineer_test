@@ -1,0 +1,10 @@
+aiofiles==25.1.0
+fastapi==0.121.0
+httpx==0.28.1
+langchain==1.0.3
+langchain_openai==1.0.2
+pandas==2.3.3
+pydantic==2.12.4
+python-dotenv==1.2.1
+streamlit==1.51.0
+typing_extensions==4.15.0
