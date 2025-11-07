@@ -2,13 +2,14 @@ import base64
 from typing_extensions import List
 from pydantic import BaseModel
 
-from src.be.constant import llm
+from src.be.setup import llm
 
 class Receipt(BaseModel):
     description : str
     quantity : int
     price : float
     date : str
+    vendor : str
 
 class Receipts(BaseModel):
     receipts : List[Receipt]
@@ -45,6 +46,7 @@ async def extract_receipt(image_path:str):
         - quantity : jumlah barang yang dibeli, anggap 1 jika tidak ada di gambar
         - price : total harga dari barang tersebut, tidak perlu menghitung harga per-barangnya jika quantity>1. Cukup ambil saja harga yang tertera di gambar receipt secara langsung
         - date : tanggal pembelian barang, buat dalam format year-month-date
+        - vendor : dimana item ini dibeli, biasanya yang dimaksud adalah merchant/toko
         karena ada banyak barang jadi anda perlu membuat list dari masing2 ekstraksi. Sehingga outputnya menjadi
         [{"deskripsi":"deskripsi 1", "quantity":1, "price":1000, "date":"2025-11-04"}]
         """
